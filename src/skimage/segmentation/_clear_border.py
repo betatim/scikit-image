@@ -1,8 +1,10 @@
 import numpy as np
 
 from ..measure import label
+from ..util._backends import dispatchable
 
 
+@dispatchable
 def clear_border(labels, buffer_size=0, bgval=0, mask=None, *, out=None):
     """Clear objects connected to the label image border.
 

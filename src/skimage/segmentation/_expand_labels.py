@@ -1,7 +1,10 @@
 import numpy as np
 from scipy.ndimage import distance_transform_edt
 
+from ..util._backends import dispatchable
 
+
+@dispatchable
 def expand_labels(label_image, distance=1, spacing=1):
     """Expand labels in label image by ``distance`` pixels without overlapping.
 

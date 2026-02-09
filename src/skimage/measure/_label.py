@@ -1,4 +1,6 @@
 from scipy import ndimage
+
+from ..util._backends import dispatchable
 from ._ccomp import label_cython as clabel
 
 
@@ -30,6 +32,7 @@ def _label_bool(image, background=None, return_num=False, connectivity=None):
         return result[0]
 
 
+@dispatchable
 def label(label_image, background=None, return_num=False, connectivity=None):
     r"""Label connected regions of an integer array.
 

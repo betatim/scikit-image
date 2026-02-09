@@ -4,6 +4,7 @@ from scipy import ndimage as ndi
 from .._shared.utils import _supported_float_type
 from ..morphology import dilation, erosion, footprint_rectangle
 from ..util import img_as_float, view_as_windows
+from ..util._backends import dispatchable
 from ..color import gray2rgb
 
 
@@ -45,6 +46,7 @@ def _find_boundaries_subpixel(label_img):
     return boundaries
 
 
+@dispatchable
 def find_boundaries(label_img, connectivity=1, mode='thick', background=0):
     """Return bool array where boundaries between labeled regions are True.
 
