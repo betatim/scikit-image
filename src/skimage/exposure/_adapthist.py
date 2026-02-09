@@ -12,6 +12,7 @@ import numbers
 
 import numpy as np
 
+from ..util._backends import dispatchable
 from .._shared.utils import _supported_float_type
 from ..color.adapt_rgb import adapt_rgb, hsv_value
 from .exposure import rescale_intensity
@@ -20,6 +21,7 @@ from ..util import img_as_uint
 NR_OF_GRAY = 2**14  # number of grayscale levels to use in CLAHE algorithm
 
 
+@dispatchable
 @adapt_rgb(hsv_value)
 def equalize_adapthist(image, kernel_size=None, clip_limit=0.01, nbins=256):
     """Contrast Limited Adaptive Histogram Equalization (CLAHE).

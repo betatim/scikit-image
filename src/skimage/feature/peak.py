@@ -4,6 +4,7 @@ import numpy as np
 import scipy.ndimage as ndi
 
 from .. import measure
+from ..util._backends import dispatchable
 from .._shared.coord import ensure_spacing
 
 
@@ -115,6 +116,7 @@ def _get_excluded_border_width(image, min_distance, exclude_border):
     return border_width
 
 
+@dispatchable
 def peak_local_max(
     image,
     min_distance=1,

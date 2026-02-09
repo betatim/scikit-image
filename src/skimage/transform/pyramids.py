@@ -4,6 +4,7 @@ import numpy as np
 
 from .._shared.filters import gaussian
 from .._shared.utils import convert_to_float
+from ..util._backends import dispatchable
 from ._warps import resize
 
 
@@ -34,6 +35,7 @@ def _check_factor(factor):
         raise ValueError('scale factor must be greater than 1')
 
 
+@dispatchable
 def pyramid_reduce(
     image,
     downscale=2,
@@ -111,6 +113,7 @@ def pyramid_reduce(
     return out
 
 
+@dispatchable
 def pyramid_expand(
     image,
     upscale=2,

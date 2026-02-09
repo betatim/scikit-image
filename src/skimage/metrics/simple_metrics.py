@@ -112,6 +112,7 @@ def normalized_root_mse(image_true, image_test, *, normalization='euclidean'):
     return np.sqrt(mean_squared_error(image_true, image_test)) / denom
 
 
+@dispatchable
 def peak_signal_noise_ratio(image_true, image_test, *, data_range=None):
     """
     Compute the peak signal to noise ratio (PSNR) for an image.
@@ -200,6 +201,7 @@ def _pad_to(arr, shape):
     return np.pad(arr, pad_width=padding, mode='constant', constant_values=0)
 
 
+@dispatchable
 def normalized_mutual_information(image0, image1, *, bins=100):
     r"""Compute the normalized mutual information (NMI).
 

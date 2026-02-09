@@ -21,6 +21,11 @@ def public_api_module(func):
     be found.
     """
     full_name = func.__module__
+
+    # Special case: Functions in _shared.filters are exposed as skimage.filters.*
+    if full_name.startswith("skimage._shared.filters"):
+        return "skimage.filters"
+
     # This relies on the fact that scikit-image does not use
     # sub-submodules in its public API, except in one case.
     # This means that public name can be atmost `skimage.foobar`

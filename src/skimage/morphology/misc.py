@@ -5,6 +5,7 @@ import functools
 from scipy import ndimage as ndi
 from scipy.spatial import cKDTree
 
+from ..util._backends import dispatchable
 from .._shared.utils import warn, deprecate_parameter, DEPRECATED
 from ._misc_cy import _remove_objects_by_distance
 
@@ -56,6 +57,7 @@ def _check_dtype_supported(ar):
         )
 
 
+@dispatchable
 @deprecate_parameter(
     deprecated_name="min_size",
     new_name="max_size",
@@ -178,6 +180,7 @@ def remove_small_objects(
     return out
 
 
+@dispatchable
 @deprecate_parameter(
     deprecated_name="area_threshold",
     new_name="max_size",

@@ -1,6 +1,9 @@
 import numpy as np
 
+from ..util._backends import dispatchable
 
+
+@dispatchable
 def integral_image(image, *, dtype=None):
     r"""Integral image / summed area table.
 
@@ -49,6 +52,7 @@ def integral_image(image, *, dtype=None):
     return S
 
 
+@dispatchable
 def integrate(ii, start, end):
     """Use an integral image to integrate over a given window.
 

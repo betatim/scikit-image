@@ -4,6 +4,7 @@ from scipy.ndimage import binary_erosion, convolve
 
 from .._shared.utils import _supported_float_type, check_nD
 from ..restoration.uft import laplacian
+from ..util._backends import dispatchable
 from ..util.dtype import img_as_float
 
 # n-dimensional filter weights
@@ -196,6 +197,7 @@ def _generic_edge_filter(
     return output
 
 
+@dispatchable
 def sobel(image, mask=None, *, axis=None, mode='reflect', cval=0.0):
     """Find edges in an image using the Sobel filter.
 
@@ -313,6 +315,7 @@ def sobel_v(image, mask=None):
     return sobel(image, mask=mask, axis=1)
 
 
+@dispatchable
 def scharr(image, mask=None, *, axis=None, mode='reflect', cval=0.0):
     """Find the edge magnitude using the Scharr transform.
 
@@ -444,6 +447,7 @@ def scharr_v(image, mask=None):
     return scharr(image, mask=mask, axis=1)
 
 
+@dispatchable
 def prewitt(image, mask=None, *, axis=None, mode='reflect', cval=0.0):
     """Find the edge magnitude using the Prewitt transform.
 
@@ -563,6 +567,7 @@ def prewitt_v(image, mask=None):
     return prewitt(image, mask=mask, axis=1)
 
 
+@dispatchable
 def roberts(image, mask=None):
     """Find the edge magnitude using Roberts' cross operator.
 
@@ -677,6 +682,7 @@ def roberts_neg_diag(image, mask=None):
     return _mask_filter_result(result, mask)
 
 
+@dispatchable
 def laplace(image, ksize=3, mask=None):
     """Find the edges of an image using the Laplace operator.
 

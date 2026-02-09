@@ -17,6 +17,7 @@ from ..filters._multiotsu import (
 )
 from ..transform import integral_image
 from ..util import dtype_limits
+from ..util._backends import dispatchable
 from ._sparse import _correlate_sparse, _validate_window_size
 
 __all__ = [
@@ -333,6 +334,7 @@ def _validate_image_histogram(image, hist, nbins=None, normalize=False):
     return counts.astype('float32', copy=False), bin_centers
 
 
+@dispatchable
 def threshold_otsu(image=None, nbins=256, *, hist=None):
     """Return threshold value based on Otsu's method.
 
@@ -407,6 +409,7 @@ def threshold_otsu(image=None, nbins=256, *, hist=None):
     return threshold
 
 
+@dispatchable
 def threshold_yen(image=None, nbins=256, *, hist=None):
     """Return threshold value based on Yen's method.
     Either image or hist must be provided. In case hist is given, the actual
@@ -467,6 +470,7 @@ def threshold_yen(image=None, nbins=256, *, hist=None):
     return bin_centers[crit.argmax()]
 
 
+@dispatchable
 def threshold_isodata(image=None, nbins=256, return_all=False, *, hist=None):
     """Return threshold value(s) based on ISODATA method.
 
@@ -639,6 +643,7 @@ def _cross_entropy(image, threshold, bins=_DEFAULT_ENTROPY_BINS):
     return nu
 
 
+@dispatchable
 def threshold_li(image, *, tolerance=None, initial_guess=None, iter_callback=None):
     """Compute threshold value by Li's iterative Minimum Cross Entropy method.
 

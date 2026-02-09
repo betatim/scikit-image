@@ -1,5 +1,6 @@
 import numpy as np
 
+from ..util._backends import dispatchable
 from ..util.dtype import img_as_float
 from .._shared import utils
 from .._shared.filters import gaussian
@@ -16,6 +17,7 @@ def _unsharp_mask_single_channel(image, radius, amount, vrange):
     return result
 
 
+@dispatchable
 def unsharp_mask(
     image, radius=1.0, amount=1.0, preserve_range=False, *, channel_axis=None
 ):

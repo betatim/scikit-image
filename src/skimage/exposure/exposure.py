@@ -1,5 +1,6 @@
 import numpy as np
 
+from ..util._backends import dispatchable
 from ..util.dtype import dtype_range, dtype_limits
 from .._shared import utils
 
@@ -356,6 +357,7 @@ def cumulative_distribution(image, nbins=256):
     return img_cdf, bin_centers
 
 
+@dispatchable
 def equalize_hist(image, nbins=256, mask=None):
     """Return image after histogram equalization.
 
@@ -488,6 +490,7 @@ def _output_dtype(dtype_or_range, image_dtype):
         )
 
 
+@dispatchable
 def rescale_intensity(image, in_range='image', out_range='dtype'):
     """Return image after stretching or shrinking its intensity levels.
 
@@ -623,6 +626,7 @@ def _adjust_gamma_u8(image, gamma, gain):
     return lut[image]
 
 
+@dispatchable
 def adjust_gamma(image, gamma=1, gain=1):
     """Perform gamma correction on the input image.
 

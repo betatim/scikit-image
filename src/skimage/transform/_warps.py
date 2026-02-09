@@ -14,6 +14,7 @@ from .._shared.utils import (
     _validate_interpolation_order,
     channel_as_last_axis,
 )
+from ..util._backends import dispatchable
 
 HOMOGRAPHY_TRANSFORMS = (SimilarityTransform, AffineTransform, ProjectiveTransform)
 
@@ -68,6 +69,7 @@ def _preprocess_resize_output_shape(image, output_shape):
     return image, output_shape
 
 
+@dispatchable
 def resize(
     image,
     output_shape,
@@ -225,6 +227,7 @@ def resize(
     return out
 
 
+@dispatchable
 @channel_as_last_axis()
 def rescale(
     image,
@@ -343,6 +346,7 @@ def rescale(
     )
 
 
+@dispatchable
 def rotate(
     image,
     angle,
@@ -469,6 +473,7 @@ def rotate(
     )
 
 
+@dispatchable
 def downscale_local_mean(image, factors, cval=0, clip=True):
     """Down-sample N-dimensional image by local averaging.
 
@@ -533,6 +538,7 @@ def _swirl_mapping(xy, center, rotation, strength, radius):
     return xy
 
 
+@dispatchable
 def swirl(
     image,
     center=None,
@@ -777,6 +783,7 @@ def _clip_warp_output(input_image, output_image, mode, cval, clip):
         np.clip(output_image, min_val, max_val, out=output_image)
 
 
+@dispatchable
 def warp(
     image,
     inverse_map,
@@ -1120,6 +1127,7 @@ def _log_polar_mapping(output_coords, k_angle, k_radius, center):
     return coords
 
 
+@dispatchable
 @channel_as_last_axis()
 def warp_polar(
     image,
@@ -1287,6 +1295,7 @@ def _local_mean_weights(old_size, new_size, grid_mode, dtype):
     return weights
 
 
+@dispatchable
 def resize_local_mean(
     image, output_shape, grid_mode=True, preserve_range=False, *, channel_axis=None
 ):

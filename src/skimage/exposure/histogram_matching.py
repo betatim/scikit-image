@@ -1,5 +1,6 @@
 import numpy as np
 
+from ..util._backends import dispatchable
 from .._shared import utils
 
 
@@ -30,6 +31,7 @@ def _match_cumulative_cdf(source, template):
     return interp_a_values[src_lookup].reshape(source.shape)
 
 
+@dispatchable
 @utils.channel_as_last_axis(channel_arg_positions=(0, 1))
 def match_histograms(image, reference, *, channel_axis=None):
     """Adjust an image so that its cumulative histogram matches that of another.

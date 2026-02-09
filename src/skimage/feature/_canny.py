@@ -8,6 +8,7 @@ Reference: Canny, J., A Computational Approach To Edge Detection, IEEE Trans.
 import numpy as np
 import scipy.ndimage as ndi
 
+from ..util._backends import dispatchable
 from ..util.dtype import dtype_limits
 from .._shared.filters import gaussian
 from .._shared.utils import _supported_float_type, check_nD
@@ -100,6 +101,7 @@ def _preprocess(image, mask, sigma, mode, cval):
     return smoothed_image, eroded_mask
 
 
+@dispatchable
 def canny(
     image,
     sigma=1.0,

@@ -3,9 +3,11 @@ from warnings import warn
 import numpy as np
 from scipy import ndimage as ndi
 
+from ..util._backends import dispatchable
 from .rank import generic
 
 
+@dispatchable
 def median(
     image, footprint=None, out=None, mode='nearest', cval=0.0, behavior='ndimage'
 ):

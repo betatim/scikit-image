@@ -9,6 +9,7 @@ from scipy import ndimage as ndi
 
 from .footprints import _footprint_is_sequence, pad_footprint
 from .misc import default_footprint
+from ..util._backends import dispatchable
 from .._shared.utils import deprecate_func
 
 
@@ -39,6 +40,7 @@ def _iterate_binary_func(binary_func, image, footprint, out, border_value):
 # The default_footprint decorator provides a diamond footprint as
 # default with the same dimension as the input image and size 3 along each
 # axis.
+@dispatchable
 @default_footprint
 @deprecate_func(
     deprecated_version="0.26",
@@ -127,6 +129,7 @@ def binary_erosion(image, footprint=None, out=None, *, mode='ignore'):
     return out
 
 
+@dispatchable
 @default_footprint
 @deprecate_func(
     deprecated_version="0.26",
@@ -215,6 +218,7 @@ def binary_dilation(image, footprint=None, out=None, *, mode='ignore'):
     return out
 
 
+@dispatchable
 @default_footprint
 @deprecate_func(
     deprecated_version="0.26",
@@ -288,6 +292,7 @@ def binary_opening(image, footprint=None, out=None, *, mode='ignore'):
     return out
 
 
+@dispatchable
 @default_footprint
 @deprecate_func(
     deprecated_version="0.26",

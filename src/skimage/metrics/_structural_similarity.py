@@ -7,11 +7,13 @@ from .._shared import utils
 from .._shared.filters import gaussian
 from .._shared.utils import _supported_float_type, check_shape_equality, warn
 from ..util.arraycrop import crop
+from ..util._backends import dispatchable
 from ..util.dtype import dtype_range
 
 __all__ = ['structural_similarity']
 
 
+@dispatchable
 def structural_similarity(
     im1,
     im2,
